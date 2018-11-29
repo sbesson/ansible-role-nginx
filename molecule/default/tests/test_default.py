@@ -11,6 +11,7 @@ def test_package(host):
 
 
 def test_service(host):
+    hostname = host.backend.get_hostname()
     if hostname != 'nginx-custom':
         service = host.service('nginx')
         assert service.is_running
