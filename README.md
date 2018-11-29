@@ -1,6 +1,9 @@
 Nginx
 =====
 
+[![Build Status](https://travis-ci.org/openmicroscopy/ansible-role-nginx.svg)](https://travis-ci.org/openmicroscopy/ansible-role-nginx)
+[![Ansible Role](https://img.shields.io/ansible/role/14768.svg)](https://galaxy.ansible.com/openmicroscopy/nginx/)
+
 Install upstream Nginx.
 
 TODO: Add configuration options.
