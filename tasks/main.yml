@@ -3,28 +3,28 @@
 
 
 - name: system packages | setup upstream nginx stable repo
-  become: yes
+  become: true
   yum:
     name: https://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
     state: present
   when: nginx_stable_repo
 
 - name: system packages | setup upstream nginx mainline repo
-  become: yes
+  become: true
   copy:
     src: nginx-mainline.repo
     dest: /etc/yum.repos.d/nginx-mainline.repo
   when: not nginx_stable_repo
 
 - name: system packages | install nginx
-  become: yes
+  become: true
   yum:
     name: nginx
     state: present
 
 # example_ssl.conf is in some distro versions but not upstream, disable it just in case
 - name: nginx | remove default config
-  become: yes
+  become: true
   copy:
     content: "# This file is intentionally blank (Ansible)"
     dest: /etc/nginx/conf.d/{{ item }}

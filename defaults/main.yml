@@ -8,4 +8,4 @@ nginx_logrotate_interval: daily
 nginx_logrotate_backlog_size: 366
 
 # Use stable or mainline?
-nginx_stable_repo: True
+nginx_stable_repo: true

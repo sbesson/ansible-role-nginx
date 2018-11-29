@@ -6,8 +6,11 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: instance
-    image: centos:7
+  - name: nginx-c7
+    image: centos/systemd
+    image_version: latest
+    command: /sbin/init
+    privileged: true
 provisioner:
   name: ansible
   lint:
