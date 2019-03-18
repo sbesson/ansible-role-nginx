@@ -35,3 +35,14 @@ def test_logrotate(host):
     else:
         assert log.contains("weekly")
         assert log.contains("rotate 5")
+
+
+def test_version(host):
+    hostname = host.backend.get_hostname()
+    r = host.run('nginx -v')
+    assert r.rc == 0
+    ver = r.stderr.strip()
+    if hostname == 'nginx-custom':
+        assert ver == ('nginx version: nginx/1.15.8')
+    else:
+        assert ver.startswith('nginx version: nginx/1.14.')
