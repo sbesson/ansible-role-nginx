@@ -20,7 +20,8 @@
 - name: system packages | install nginx
   become: true
   yum:
-    name: nginx
+    name: >-
+      nginx{{ (nginx_version | length > 0) | ternary('-' + nginx_version, '') }}
     state: present
 
 # example_ssl.conf is in some distro versions but not upstream, disable it
