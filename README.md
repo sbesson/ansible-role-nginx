@@ -13,13 +13,13 @@ Role Variables
 --------------
 
 - `nginx_keep_default_configs`: If `true` keep the default site configuration files in `nginx/conf.d`, default `false` (disable them)
-- `nginx_version`: The packaged version of Nginx, optional
+- `nginx_stable_repo`: If `false` use the mainline instead of stable repo, default `true`
+- `nginx_version`: The packaged version of Nginx, optional, available versions depends on `nginx_stable_repo`
 
 Log rotation:
 
 - `nginx_logrotate_interval`: Rotate log files at this interval, default `daily`
 - `nginx_logrotate_backlog_size`: Number of backlog files to keep, default `366`
-- `nginx_stable_repo`: If `false` use the mainline instead of stable repo, default `true`
 
 
 Author Information
