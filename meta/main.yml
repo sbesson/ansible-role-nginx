@@ -4,7 +4,7 @@ galaxy_info:
   description: Install upstream Nginx
   company: Open Microscopy Environment
   license: BSD
-  min_ansible_version: 2.1
+  min_ansible_version: 2.6
   platforms:
     - name: EL
       versions:

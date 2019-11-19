@@ -12,8 +12,21 @@ platforms:
     privileged: true
     tmpfs:
       - /sys/fs/cgroup
+  - name: nginx-custom
+    image: leandelivery/docker-systemd:ubuntu-18.04
+    command: /sbin/init
+    privileged: true
+    tmpfs:
+      - /sys/fs/cgroup
 provisioner:
   name: ansible
+  inventory:
+    host_vars:
+      nginx-custom:
+        nginx_keep_default_configs: true
+        nginx_stable_repo: false
+        nginx_logrotate_interval: weekly
+        nginx_logrotate_backlog_size: 5
   playbooks:
     converge: ../resources/playbook.yml
   lint:

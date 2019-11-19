@@ -1,5 +1,4 @@
 import os
-# import pytest
 import testinfra.utils.ansible_runner
 
 testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
@@ -11,8 +10,10 @@ def test_package(host):
 
 
 def test_service(host):
-    service = host.service('nginx')
-    assert service.is_running
+    hostname = host.backend.get_hostname()
+    if hostname != 'nginx-custom':
+        service = host.service('nginx')
+        assert service.is_running
 
 
 def test_configuration(host):
@@ -22,12 +23,21 @@ def test_configuration(host):
 
 def test_logrotate(host):
     log = host.file("/etc/logrotate.d/nginx")
-    assert log.contains("daily")
-    assert log.contains("rotate 366")
+    hostname = host.backend.get_hostname()
+    if hostname != 'nginx-custom':
+        assert log.contains("daily")
+        assert log.contains("rotate 366")
+    else:
+        assert log.contains("weekly")
+        assert log.contains("rotate 5")
 
 
 def test_version(host):
+    hostname = host.backend.get_hostname()
     r = host.run('nginx -v')
     assert r.rc == 0
     ver = r.stderr.strip()
-    assert ver.startswith('nginx version: nginx/1.14.')
+    if hostname == 'nginx-custom':
+        assert ver.startswith('nginx version: nginx/1.17.')
+    else:
+        assert ver.startswith('nginx version: nginx/1.16.')
