@@ -1,6 +1,7 @@
 ---
 # defaults file for roles/nginx
 
+# Not supported on Ubuntu
 nginx_version: ''
 
 # Rotate log files at this interval

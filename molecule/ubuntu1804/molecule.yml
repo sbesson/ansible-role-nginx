@@ -7,30 +7,32 @@ lint:
   name: yamllint
 platforms:
   - name: nginx-default
-    image: centos/systemd
-    image_version: latest
+    image: leandelivery/docker-systemd:ubuntu-18.04
     command: /sbin/init
     privileged: true
+    tmpfs:
+      - /sys/fs/cgroup
   - name: nginx-custom
-    image: centos/systemd
-    image_version: latest
+    image: leandelivery/docker-systemd:ubuntu-18.04
     command: /sbin/init
     privileged: true
+    tmpfs:
+      - /sys/fs/cgroup
 provisioner:
   name: ansible
-  lint:
-    name: ansible-lint
   inventory:
     host_vars:
       nginx-custom:
         nginx_keep_default_configs: true
         nginx_stable_repo: false
-        # Current mainline is 1.15.9
-        nginx_version: 1.15.8
         nginx_logrotate_interval: weekly
         nginx_logrotate_backlog_size: 5
+  playbooks:
+    converge: ../resources/playbook.yml
+  lint:
+    name: ansible-lint
 scenario:
-  name: default
+  name: ubuntu1804
 verifier:
   name: testinfra
   lint:
