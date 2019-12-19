@@ -2,6 +2,9 @@
 
 - name: system packages | setup nginx ppa repo
   apt_repository:
+    # This shouldn't be necessary but in some cases Ansible gets the wrong name
+    # https://github.com/ansible/ansible/issues/45614
+    codename: "{{ ansible_distribution_release }}"
     repo: ppa:nginx/{{ nginx_stable_repo | ternary('stable', 'mainline') }}
 
 - name: system packages | install nginx
