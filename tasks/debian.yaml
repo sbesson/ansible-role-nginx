@@ -1,6 +1,7 @@
 ---
 
 - name: system packages | setup nginx ppa repo
+  become: true
   apt_repository:
     # This shouldn't be necessary but in some cases Ansible gets the wrong name
     # https://github.com/ansible/ansible/issues/45614
