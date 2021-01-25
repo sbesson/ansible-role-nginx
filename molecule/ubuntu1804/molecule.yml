@@ -18,6 +18,12 @@ platforms:
     privileged: true
     tmpfs:
       - /sys/fs/cgroup
+  - name: nginx-disabled
+    image: leandelivery/docker-systemd:ubuntu-18.04
+    command: /sbin/init
+    privileged: true
+    tmpfs:
+      - /sys/fs/cgroup
 provisioner:
   name: ansible
   inventory:
@@ -27,6 +33,8 @@ provisioner:
         nginx_stable_repo: false
         nginx_logrotate_interval: weekly
         nginx_logrotate_backlog_size: 5
+      nginx-disabled:
+        nginx_systemd_setup: false
   playbooks:
     converge: ../resources/playbook.yml
   lint:

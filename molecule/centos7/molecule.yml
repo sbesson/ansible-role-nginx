@@ -7,13 +7,15 @@ lint:
   name: yamllint
 platforms:
   - name: nginx-default
-    image: centos/systemd
-    image_version: latest
+    image: centos/systemd:latest
     command: /sbin/init
     privileged: true
   - name: nginx-custom
-    image: centos/systemd
-    image_version: latest
+    image: centos/systemd:latest
+    command: /sbin/init
+    privileged: true
+  - name: nginx-disabled
+    image: centos/systemd:latest
     command: /sbin/init
     privileged: true
 provisioner:
@@ -31,6 +33,8 @@ provisioner:
         nginx_version: 1.15.8
         nginx_logrotate_interval: weekly
         nginx_logrotate_backlog_size: 5
+      nginx-disabled:
+        nginx_systemd_setup: false
 scenario:
   name: centos7
 verifier:
