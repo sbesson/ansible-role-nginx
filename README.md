@@ -15,6 +15,8 @@ Role Variables
 - `nginx_keep_default_configs`: If `true` keep the default site configuration files in `nginx/conf.d`, default `false` (disable them)
 - `nginx_stable_repo`: If `false` use the mainline instead of stable repo, default `true`
 - `nginx_version`: The packaged version of Nginx, optional, available versions depends on `nginx_stable_repo`. Not supported on Ubuntu.
+- `nginx_systemd_setup`: Start/restart nginx using systemd, default `true`
+, if you want to manage Nginx yourself set this to `false`
 
 Log rotation:
 
