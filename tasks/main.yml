@@ -12,6 +12,7 @@
   service:
     name: nginx
     state: started
+  when: nginx_systemd_setup
 
 - name: nginx | configure logrotate
   become: true

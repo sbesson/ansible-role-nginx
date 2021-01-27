@@ -15,3 +15,6 @@ nginx_stable_repo: true
 
 # Keep default configurations under /etc/nginx
 nginx_keep_default_configs: false
+
+# Start/restart nginx using systemd
+nginx_systemd_setup: true
