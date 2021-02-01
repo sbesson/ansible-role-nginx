@@ -13,6 +13,7 @@
   copy:
     src: nginx-mainline.repo
     dest: /etc/yum.repos.d/nginx-mainline.repo
+    mode: 0644
   when: not nginx_stable_repo
 
 - name: system packages | install nginx
@@ -30,6 +31,7 @@
   copy:
     content: "# This file is intentionally blank (Ansible)"
     dest: /etc/nginx/conf.d/{{ item }}
+    mode: 0644
   with_items:
     - example_ssl.conf
     - default.conf
