@@ -1,7 +1,7 @@
 Nginx
 =====
 
-[![Build Status](https://travis-ci.org/ome/ansible-role-nginx.svg)](https://travis-ci.org/ome/ansible-role-nginx)
+[![Actions Status](https://github.com/ome/ansible-role-nginx/workflows/Molecule/badge.svg)](https://github.com/ome/ansible-role-nginx/actions)
 [![Ansible Role](https://img.shields.io/ansible/role/41090.svg)](https://galaxy.ansible.com/ome/nginx/)
 
 Install upstream Nginx.
