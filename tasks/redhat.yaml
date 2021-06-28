@@ -23,6 +23,7 @@
       nginx{{ (nginx_version | length > 0) |
         ternary('-' + nginx_version, '') }}
     state: present
+    disablerepo: epel
 
 # example_ssl.conf is in some distro versions but not upstream, disable it
 # just in case
