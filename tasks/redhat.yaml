@@ -16,6 +16,11 @@
     mode: 0644
   when: not nginx_stable_repo
 
+- name: system packages | check if epel is installed
+  stat:
+    path: '/etc/yum.repos.d/epel.repo'
+  register: epel_repo
+
 - name: system packages | install nginx
   become: true
   yum:
@@ -23,6 +28,7 @@
       nginx{{ (nginx_version | length > 0) |
         ternary('-' + nginx_version, '') }}
     state: present
+    disablerepo: "{{ epel_repo.stat.exists | ternary('epel', '') }}"
 
 # example_ssl.conf is in some distro versions but not upstream, disable it
 # just in case
